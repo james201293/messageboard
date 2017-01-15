@@ -25,7 +25,7 @@ response.setDateHeader("Expires", 0);
 		body{
 			background-color: #FFEE99
 		}
-		table,tr,td{
+		table,tr,td {
 			 border: 1px solid black;
 			 border-collapse: collapse;
 			 font-weight:bold;
@@ -82,7 +82,7 @@ response.setDateHeader("Expires", 0);
         </table>
     </form>
 
-    
+
 
 </body>
 </html>
