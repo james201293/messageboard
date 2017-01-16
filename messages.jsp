@@ -19,8 +19,9 @@ response.setDateHeader("Expires", 0);
 %>
 <html>
 <head>
+	<script src="jquery.js"></script>
 	<title>messageboard</title>
-   
+
 	<style type="text/css">
 		body{
 			background-color: #FFEE99
@@ -32,7 +33,7 @@ response.setDateHeader("Expires", 0);
 		}
 		table{
 			/*真正的表格置中*/
-			margin-left:auto; 
+			margin-left:auto;
 			margin-right:auto;
 			background-color: #FFFFBB
 		}
@@ -41,7 +42,7 @@ response.setDateHeader("Expires", 0);
 			color: red;
 		}
         #form1,.button{
-            margin-left:auto; 
+            margin-left:auto;
             margin-right:auto;
             background-color: #FFFFBB;
             text-align: center;
@@ -60,10 +61,10 @@ response.setDateHeader("Expires", 0);
         else {
             display.innerHTML = "Wrong!!!!!"
             document.getElementById('deletebtn').disabled=true;
-        }    
+        }
     }
     </script>
-    
+
 </head>
 <body>
 	<h1>所有留言</h1>
@@ -73,7 +74,7 @@ response.setDateHeader("Expires", 0);
             <input type="text" id="input" name="deleteindex" oninput="validate()">
             <input type="submit" id="deletebtn" name="delete" value="刪除留言">
             <div id="display"></div>
-    </form> 
+    </form>
 
     <table>
             <thead>

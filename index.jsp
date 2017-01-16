@@ -19,6 +19,7 @@ response.setDateHeader("Expires", 0);
 %>
 <html>
 <head>
+	<script src="jquery.js"></script>
 	<title>messageboard</title>
 
 	<style type="text/css">
