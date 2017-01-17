@@ -41,18 +41,21 @@ response.setDateHeader("Expires", 0);
 			text-align: center;
 			color: red;
 		}
-        #form1,.button{
-            margin-left:auto;
-            margin-right:auto;
-            background-color: #FFFFBB;
-            text-align: center;
-        }
+
+		#deltable,#deltable>tr,.button{
+        margin-left:auto;
+        margin-right:auto;
+				margin-top:3em;
+				margin-bottom: 3em;
+        background-color: #FFFFBB;
+        text-align: center;
+    }
 	</style>
 
-    <script>
+    <script type="text/javascript">  //驗證是否為數字
     function validate() {
         var display = document.getElementById("display");
-        var input = document.getElementById("input");
+        var input = document.getElementById("deleteindex");
         var number = /\d/;
         if (number.test(input.value)) {
             display.innerHTML = "Right!"
@@ -69,12 +72,36 @@ response.setDateHeader("Expires", 0);
 <body>
 	<h1>所有留言</h1>
 	<hr>
-	<form name="form1" id="form1" method="post" action="deletemsg.jsp">
-            請輸入要刪除的ID：
-            <input type="text" id="input" name="deleteindex" oninput="validate()">
-            <input type="submit" id="deletebtn" name="delete" value="刪除留言">
-            <div id="display"></div>
-    </form>
+		<table id="deltable">
+				<tr>
+            <td>請輸入要刪除的ID：</td>
+            <td><input type="text" id="deleteindex" oninput="validate()"></td>
+            <td><input type="button" id="deletebtn" value="刪除留言"></td>
+            <td id="display"></td>
+				</tr>
+  	</table>
+
+		<script type="text/javascript">
+				$("#deletebtn").click(function(e){ //送出表單
+
+					$.ajax({
+						type: "POST",
+						url: "deletemsg.jsp",
+						dataType: "html",
+						data: {deleteindex: $("#deleteindex").val()},
+						cache: false,
+						success: function(response){
+							alert("delet succcess");
+							location.reload();  //刷新網頁
+						},
+						error: function(xhr){
+							alert(xhr.status);
+						}
+
+
+					});
+				});
+		</script>
 
     <table>
             <thead>
