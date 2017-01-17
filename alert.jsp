@@ -22,7 +22,7 @@ response.setDateHeader("Expires", 0);
 <input type="button" name="cmdread" value="查看所有留言" onclick="window.open('messages.jsp')">
 <hr>
 <%
-		String author1=request.getParameter("txtauthor");
+				String author1=request.getParameter("txtauthor");
         String title1=request.getParameter("txttitle");
         String content1=request.getParameter("content");
         /*取得資料庫連線(固定格式)*/

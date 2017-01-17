@@ -26,14 +26,14 @@ response.setDateHeader("Expires", 0);
     PreparedStatement pstmt=null;
     String deletesql="delete from message where id=?"; //sql請求
 
-    try{
+    		try{
           conn=getConnection();
           pstmt=conn.prepareStatement(deletesql);
 
           pstmt.setInt(1, index); //傳入第1個參數index
 
 		    //execute(執行) delete SQL statement
-		    pstmt.executeUpdate();  
+		    pstmt.executeUpdate();
 
           out.print("Delete success！");
           pstmt.close();
