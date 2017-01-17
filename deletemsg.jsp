@@ -34,9 +34,7 @@ response.setDateHeader("Expires", 0);
 
 		    //execute(執行) delete SQL statement
 		    pstmt.executeUpdate();
-
-          out.print("Delete success！");
-          pstmt.close();
+      	pstmt.close();
         }
         catch( Exception e){
             throw e;
@@ -46,15 +44,4 @@ response.setDateHeader("Expires", 0);
             if(conn!=null)conn.close();
         }
             /*---------------------------------*/
-%>
-
-<html>
-<head>
-
-</head>
-<body>
-	<div class="button">
-        <input type="button" value="回到留言表單" onclick="window.open('messages.jsp')">
-    </div>
-</body>
-</html>
+						%>
