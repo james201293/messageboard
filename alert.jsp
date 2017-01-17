@@ -28,12 +28,16 @@ response.setDateHeader("Expires", 0);
         /*取得資料庫連線(固定格式)*/
             Connection conn = null;
             PreparedStatement pstmt=null;
-            String sql="insert into message (author,title,content) values ('"+author1+"','"+title1+"','"+content1+"')";  //傳入使用者輸入的變數
+            String sql="insert into message (author,title,content) values (?,?,?)";  //傳入使用者輸入的變數
 
             try{
                 conn=getConnection();
 
                 pstmt=conn.prepareStatement(sql);
+								pstmt.setString(1, author1);
+								pstmt.setString(2, title1);
+								pstmt.setString(3, content1);
+
                 pstmt.executeUpdate();
 
                 out.print("update sucess");
