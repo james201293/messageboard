@@ -95,6 +95,7 @@ response.setDateHeader("Expires", 0);
 								cache: false,
 								success: function(response){
 								  alert("submit succcess");
+									$("#txtauthor, #txttitle, #content").val(''); //清空表單
 								},
 						    error: function(xhr){
 						      alert(xhr.status);
