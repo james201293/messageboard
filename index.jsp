@@ -82,7 +82,7 @@ response.setDateHeader("Expires", 0);
 
 				<script type="text/javascript">
 					 $("#clear").click(function(e){  //清除表單
-						 $("#txtauthor, #txttitle, #content").val('');
+						 $("#txtauthor, #txttitle, #content").val('');a
 					 });
 
 					 $("#submit").click(function(e){ //送出表單
