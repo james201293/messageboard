@@ -18,9 +18,7 @@ response.setDateHeader("Expires", 0);
 
 %>
 
-<input type="button" value="回到留言表單" onclick="window.open('index.jsp')">
-<input type="button" name="cmdread" value="查看所有留言" onclick="window.open('messages.jsp')">
-<hr>
+
 <%
 				String author1=request.getParameter("txtauthor");
         String title1=request.getParameter("txttitle");
@@ -39,8 +37,6 @@ response.setDateHeader("Expires", 0);
 								pstmt.setString(3, content1);
 
                 pstmt.executeUpdate();
-
-                out.print("update sucess");
 
                 pstmt.close();
             }
