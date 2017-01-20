@@ -110,6 +110,7 @@ response.setDateHeader("Expires", 0);
                     <th>author</th>
                     <th>title</th>
                     <th>content</th>
+										<th>delete</th>
                 </tr>
             </thead>
            <tbody>
@@ -130,6 +131,7 @@ response.setDateHeader("Expires", 0);
                     out.println("<td>" + rs.getString("author") + "</td>");
                     out.println("<td>" + rs.getString("title") + " </td>");
                     out.println("<td>" + rs.getString("content") + "</td>");
+										out.println("<td><input type='button' id='delmbtn' value='刪除' onclick='delmsgbtn("+rs.getString("id")+")'></td>");  //將留言id傳入delmsgbtn function
                     out.println("</tr>");
                 }
 
@@ -147,6 +149,27 @@ response.setDateHeader("Expires", 0);
             %>
            </tbody>
     </table>
+
+		<script type="text/javascript">
+			function delmsgbtn(msgid){   //按按鈕刪除
+
+				$.ajax({
+					type: "POST",
+					url: "deletemsg.jsp",
+					dataType: "html",
+					data: {deleteindex: +msgid}, //傳入該留言id
+					cache: false,
+					success: function(response){
+						location.reload();  //刷新網頁
+					},
+					error: function(xhr){
+						alert(xhr.status);
+					}
+
+				});
+			}
+		</script>
+
     <div class="button">
         <input type="button" value="回到留言表單" onclick="window.open('index.jsp')">
     </div>
