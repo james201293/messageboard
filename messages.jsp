@@ -131,7 +131,7 @@ response.setDateHeader("Expires", 0);
                     out.println("<td>" + rs.getString("author") + "</td>");
                     out.println("<td>" + rs.getString("title") + " </td>");
                     out.println("<td>" + rs.getString("content") + "</td>");
-										out.println("<td><input type='button' id='delmbtn' value='刪除' onclick='delmsgbtn("+rs.getString("id")+")'></td>");  //將留言id傳入delmsgbtn function
+										out.println("<td><input type='button' class='delmbtn' value='刪除' msgid='"+rs.getString("id")+"'</td>");
                     out.println("</tr>");
                 }
 
@@ -151,23 +151,23 @@ response.setDateHeader("Expires", 0);
     </table>
 
 		<script type="text/javascript">
-			function delmsgbtn(msgid){   //按按鈕刪除
+				$(document).on('click','.delmbtn',function(){
+					
+						$.ajax({
+							type: "POST",
+							url: "deletemsg.jsp",
+							dataType: "html",
+							data: {deleteindex: +$(this).attr('msgid')}, //傳入該留言id
+							cache: false,
+							success: function(response){
+								location.reload();  //刷新網頁
+							},
+							error: function(xhr){
+								alert(xhr.status);
+							}
 
-				$.ajax({
-					type: "POST",
-					url: "deletemsg.jsp",
-					dataType: "html",
-					data: {deleteindex: +msgid}, //傳入該留言id
-					cache: false,
-					success: function(response){
-						location.reload();  //刷新網頁
-					},
-					error: function(xhr){
-						alert(xhr.status);
-					}
-
+						});
 				});
-			}
 		</script>
 
     <div class="button">

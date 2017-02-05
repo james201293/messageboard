@@ -73,14 +73,16 @@ response.setDateHeader("Expires", 0);
                         <input
                             type="button" id="clear" value="重新填寫留言">
                         <input
-                            type="button" id="allmessage" value="查看所有留言"
-                            onclick="window.open('messages.jsp')">
+                            type="button" id="allmessage" value="查看所有留言">
             				</div>
                 </td>
             </tr>
         </table>
 
 				<script type="text/javascript">
+					 $("#allmessage").click(function(e){  //查看所有留言
+					 	  window.open('messages.jsp');
+					 });
 					 $("#clear").click(function(e){  //清除表單
 						 $("#txtauthor, #txttitle, #content").val('');
 					 });
