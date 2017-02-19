@@ -6,6 +6,7 @@
 <%@page import="java.util.*" %>
 <%@page import="java.sql.*" %>
 <%@page import="org.sqlite.*" %>
+<%@page import="org.json.*"%>
 <%@include file="conn_f.jsp"%>
 <%
 
@@ -19,90 +20,15 @@ response.setDateHeader("Expires", 0);
 %>
 <html>
 <head>
-	<script src="jquery.js"></script>
+	<script src="js/jquery.js"></script>
+	<script src="js/angular.js"></script>
+	<link rel=stylesheet type="text/css" href="css/messages.css">
+
 	<title>messageboard</title>
-
-	<style type="text/css">
-		body{
-			background-color: #FFEE99
-		}
-		table,tr,td,th{
-			 border: 1px solid black;
-			 border-collapse: collapse;
-			 font-weight:bold;
-		}
-		table{
-			/*真正的表格置中*/
-			margin-left:auto;
-			margin-right:auto;
-			background-color: #FFFFBB
-		}
-		h1{
-			text-align: center;
-			color: red;
-		}
-
-		#deltable,#deltable>tr,.button{
-        margin-left:auto;
-        margin-right:auto;
-				margin-top:3em;
-				margin-bottom: 3em;
-        background-color: #FFFFBB;
-        text-align: center;
-    }
-	</style>
-
-    <script type="text/javascript">  //驗證是否為數字
-    function validate() {
-        var display = document.getElementById("display");
-        var input = document.getElementById("deleteindex");
-        var number = /\d/;
-        if (number.test(input.value)) {
-            display.innerHTML = "Right!"
-            document.getElementById('deletebtn').disabled=false;
-        }
-        else {
-            display.innerHTML = "Wrong!!!!!"
-            document.getElementById('deletebtn').disabled=true;
-        }
-    }
-    </script>
-
 </head>
 <body>
 	<h1>所有留言</h1>
 	<hr>
-		<table id="deltable">
-				<tr>
-            <td>請輸入要刪除的ID：</td>
-            <td><input type="text" id="deleteindex" oninput="validate()"></td>
-            <td><input type="button" id="deletebtn" value="刪除留言"></td>
-            <td id="display"></td>
-				</tr>
-  	</table>
-
-		<script type="text/javascript">
-				$("#deletebtn").click(function(e){ //送出表單
-
-					$.ajax({
-						type: "POST",
-						url: "deletemsg.jsp",
-						dataType: "html",
-						data: {deleteindex: $("#deleteindex").val()},
-						cache: false,
-						success: function(response){
-							alert("delet succcess");
-							location.reload();  //刷新網頁
-						},
-						error: function(xhr){
-							alert(xhr.status);
-						}
-
-
-					});
-				});
-		</script>
-
     <table>
             <thead>
                 <tr>
@@ -151,16 +77,17 @@ response.setDateHeader("Expires", 0);
     </table>
 
 		<script type="text/javascript">
-				$(document).on('click','.delmbtn',function(){
-					
+				$(document).on('click','.delmbtn',function(){ //動態綁定刪除按鈕
+
 						$.ajax({
 							type: "POST",
 							url: "deletemsg.jsp",
-							dataType: "html",
-							data: {deleteindex: +$(this).attr('msgid')}, //傳入該留言id
+							dataType: "json",
+							data: {"deleteindex": +$(this).attr('msgid')}, //傳入該留言id
 							cache: false,
 							success: function(response){
 								location.reload();  //刷新網頁
+								alert(response.exe_status);
 							},
 							error: function(xhr){
 								alert(xhr.status);

@@ -7,8 +7,9 @@
 <%@page import="java.sql.*" %>
 <%@page import="org.sqlite.*" %>
 <%@include file="conn_f.jsp"%>
+<%@page import="org.json.*"%>
 <%
-
+out.clear();
 response.setContentType("text/html;charset=utf-8");
 request.setCharacterEncoding("utf-8");
 //讓瀏覽器不要快取網頁
@@ -36,9 +37,14 @@ response.setDateHeader("Expires", 0);
 								pstmt.setString(2, title1);
 								pstmt.setString(3, content1);
 
-                pstmt.executeUpdate();
+                pstmt.executeUpdate(); //執行
 
                 pstmt.close();
+
+								JSONObject json = new JSONObject();
+				  				json.put("exe_status", "submit success");
+									out.print(json);
+
             }
             catch( Exception e){
                 throw e;

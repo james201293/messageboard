@@ -7,9 +7,10 @@
 <%@page import="java.sql.*" %>
 <%@page import="org.sqlite.*" %>
 <%@include file="conn_f.jsp"%>
+<%@page import="org.json.*"%>
 <%
-
-response.setContentType("text/html;charset=utf-8");
+out.clear();
+response.setContentType("application/json");
 request.setCharacterEncoding("utf-8");
 //讓瀏覽器不要快取網頁
 response.setHeader("Pragma","No-cache");           //HTTP/1.0
@@ -35,6 +36,10 @@ response.setDateHeader("Expires", 0);
 		    //execute(執行) delete SQL statement
 		    pstmt.executeUpdate();
       	pstmt.close();
+
+				JSONObject json = new JSONObject();
+  				json.put("exe_status", "delete success");
+					out.print(json);
         }
         catch( Exception e){
             throw e;

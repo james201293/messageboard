@@ -6,6 +6,7 @@
 <%@page import="java.util.*" %>
 <%@page import="java.sql.*" %>
 <%@page import="org.sqlite.*" %>
+<%@page import="org.json.*"%>
 <%@include file="conn_f.jsp"%>
 <%
 
@@ -19,31 +20,11 @@ response.setDateHeader("Expires", 0);
 %>
 <html>
 <head>
-	<script src="jquery.js"></script>
+	<script src="js/jquery.js"></script>
+	<script src="js/angular.js"></script>
+	<link rel=stylesheet type="text/css" href="css/index.css">
+
 	<title>messageboard</title>
-
-	<style type="text/css">
-		body{
-			background-color: #FFEE99
-		}
-		table,tr,td {
-			 border: 1px solid black;
-			 border-collapse: collapse;
-			 font-weight:bold;
-		}
-		table{
-			/*真正的表格置中*/
-			margin-left:auto;
-			margin-right:auto;
-			background-color: #FFFFBB
-		}
-		h1{
-			text-align: center;
-			color: red;
-		}
-	</style>
-
-
 </head>
 <body>
 	<h1>留言板</h1>
@@ -92,12 +73,12 @@ response.setDateHeader("Expires", 0);
 						  $.ajax({
 						    type: "POST",
 						    url: "alert.jsp",
-								dataType: "html",
-								data: {txtauthor: $("#txtauthor").val(), txttitle: $("#txttitle").val(), content:$("#content").val()},
+								dataType: "json",
+								data: {"txtauthor": $("#txtauthor").val(), "txttitle": $("#txttitle").val(), "content":$("#content").val()},
 								cache: false,
 								success: function(response){
-								  alert("submit succcess");
-									$("#txtauthor, #txttitle, #content").val(''); //清空表單
+									location.reload();  //刷新網頁
+									alert(response.exe_status);
 								},
 						    error: function(xhr){
 						      alert(xhr.status);
