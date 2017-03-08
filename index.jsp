@@ -20,20 +20,23 @@ response.setDateHeader("Expires", 0);
 %>
 <html>
 <head>
-	<script src="js/jquery.js"></script>
-	<script src="js/angular.js"></script>
-	<link rel=stylesheet type="text/css" href="css/index.css">
+		<script src="js/jquery.js"></script>
+		<script src="js/angular.js"></script>
+		<script src="js/index.js"></script>
+		<link rel=stylesheet type="text/css" href="css/index.css">
 
-	<title>messageboard</title>
+		<title>messageboard</title>
 </head>
-<body>
-	<h1>留言板</h1>
-	<hr>
+<body ng-app>
 
-        <table id="form" width="40%" cellspacing="1" cellpadding="3" >
+	<h1>留言板</h1>
+	<span id="greeting">{{cname || 'Hello'}} 你好!!</span>
+	<hr>
+			<div>
+        <table id="form" width="40%" cellspacing="1" cellpadding="3">
             <tr>
                 <td width="20%">留言作者:</td>
-                <td width="80%"><input type="text" id="txtauthor"></td>
+                <td width="80%"><input type="text" id="txtauthor" ng-model="cname"></td>
             </tr>
             <tr>
                 <td width="20%">留言標題:</td>
@@ -60,35 +63,7 @@ response.setDateHeader("Expires", 0);
             </tr>
         </table>
 
-				<script type="text/javascript">
-					 $("#allmessage").click(function(e){  //查看所有留言
-					 	  window.open('messages.jsp');
-					 });
-					 $("#clear").click(function(e){  //清除表單
-						 $("#txtauthor, #txttitle, #content").val('');
-					 });
-
-					 $("#submit").click(function(e){ //送出表單
-
-						  $.ajax({
-						    type: "POST",
-						    url: "alert.jsp",
-								dataType: "json",
-								data: {"txtauthor": $("#txtauthor").val(), "txttitle": $("#txttitle").val(), "content":$("#content").val()},
-								cache: false,
-								success: function(response){
-									location.reload();  //刷新網頁
-									alert(response.exe_status);
-								},
-						    error: function(xhr){
-						      alert(xhr.status);
-						    }
-
-
-						  });
-						});
-				</script>
-
+			</div>
 
 </body>
 </html>

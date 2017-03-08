@@ -39,7 +39,7 @@ response.setDateHeader("Expires", 0);
 
 				JSONObject json = new JSONObject();
   				json.put("exe_status", "delete success");
-					out.print(json);
+					out.print(json); //傳回
         }
         catch( Exception e){
             throw e;

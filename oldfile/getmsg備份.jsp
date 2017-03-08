@@ -22,6 +22,7 @@ response.setDateHeader("Expires", 0);
 <head>
 	<script src="js/jquery.js"></script>
 	<script src="js/angular.js"></script>
+	<script src="js/getmsg.js"></script>
 	<link rel=stylesheet type="text/css" href="css/messages.css">
 
 	<title>messageboard</title>
@@ -76,29 +77,8 @@ response.setDateHeader("Expires", 0);
            </tbody>
     </table>
 
-		<script type="text/javascript">
-				$(document).on('click','.delmbtn',function(){ //動態綁定刪除按鈕
-
-						$.ajax({
-							type: "POST",
-							url: "deletemsg.jsp",
-							dataType: "json",
-							data: {"deleteindex": +$(this).attr('msgid')}, //傳入該留言id
-							cache: false,
-							success: function(response){
-								location.reload();  //刷新網頁
-								alert(response.exe_status);
-							},
-							error: function(xhr){
-								alert(xhr.status);
-							}
-
-						});
-				});
-		</script>
-
     <div class="button">
-        <input type="button" value="回到留言表單" onclick="window.open('index.jsp')">
+        <input type="button" id="return" value="回到留言表單">
     </div>
 </body>
 </html>
