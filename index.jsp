@@ -20,10 +20,12 @@ response.setDateHeader("Expires", 0);
 %>
 <html>
 <head>
+		<link rel=stylesheet type="text/css" href="css/index.css">
+		<link rel=stylesheet type="text/css" href="css/jquery-ui.css">
 		<script src="js/jquery.js"></script>
+		<script src="js/jquery-ui.js"></script>
 		<script src="js/angular.js"></script>
 		<script src="js/index.js"></script>
-		<link rel=stylesheet type="text/css" href="css/index.css">
 
 		<title>messageboard</title>
 </head>
@@ -53,11 +55,11 @@ response.setDateHeader("Expires", 0);
             <tr>
                 <td colspan="2">
                     <div align="center">
-                        <input type="button" id="submit" value="添加到留言薄">
+                        <input type="button" class="ui-button ui-widget ui-corner-all" id="submit" value="添加到留言薄">
                         <input
-                            type="button" id="clear" value="重新填寫留言">
+                            type="button" class="ui-button ui-widget ui-corner-all" id="clear" value="重新填寫留言">
                         <input
-                            type="button" id="allmessage" value="查看所有留言">
+                            type="button" class="ui-button ui-widget ui-corner-all" id="allmessage" value="查看所有留言">
             				</div>
                 </td>
             </tr>

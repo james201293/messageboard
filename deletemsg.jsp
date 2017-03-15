@@ -8,6 +8,10 @@
 <%@page import="org.sqlite.*" %>
 <%@include file="conn_f.jsp"%>
 <%@page import="org.json.*"%>
+<%@page import="javax.json.JsonString"%>
+<%@page import="javax.json.JsonObject"%>
+<%@page import="javax.json.JsonReader"%>
+<%@page import="javax.json.Json"%>
 <%
 out.clear();
 response.setContentType("application/json");
@@ -20,9 +24,27 @@ response.setDateHeader("Expires", 0);
 %>
 
 <%
-	int index = Integer.parseInt(request.getParameter("deleteindex"));
+	/*Query String Parameter方法
+	int index = Integer.parseInt(request.getParameter("deleteindex"));*/
 
-    /*取得資料庫連線(固定格式)*/
+	//Payload方法
+  // 從 request 取出 JSON
+	int index=0;
+	String indexstr="";
+	JsonObject data=null;
+	//實作JsonReader把request丟進去
+  JsonReader jsonReader = Json.createReader(request.getReader());
+  try {
+				data = jsonReader.readObject();  //讀取Object
+		    jsonReader.close();
+				indexstr=data.getString("deleteindex");  //取得deleteindex字串
+      	index=Integer.parseInt(indexstr);  
+  }
+  catch(Exception e){
+				throw e;
+  }
+
+		/*取得資料庫連線(固定格式)*/
     Connection conn = null;
     PreparedStatement pstmt=null;
     String deletesql="delete from message where id=?"; //sql請求
@@ -39,6 +61,7 @@ response.setDateHeader("Expires", 0);
 
 				JSONObject json = new JSONObject();
   				json.put("exe_status", "delete success");
+					json.put("index",index);
 					out.print(json); //傳回
         }
         catch( Exception e){

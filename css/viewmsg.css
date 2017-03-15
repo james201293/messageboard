@@ -1,11 +1,17 @@
-table, th , td  {
-border: 1px solid grey;
-border-collapse: collapse;
-padding: 5px;
+table,tr,td{
+  border: 1px solid black;
+  border-collapse: collapse;
+  padding: 5px;
+  background-color: #21d6d1;
 }
-table tr:nth-child(odd) {
-background-color: #e3f51a;
+table{
+  margin-left:auto;
+  margin-right:auto;
 }
-table tr:nth-child(even) {
-background-color: #4642f9;
+h1{
+  text-align: center;
+  color: red;
+}
+body{
+  background-color: #FFEE99;
 }

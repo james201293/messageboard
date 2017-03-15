@@ -48,7 +48,7 @@ response.setDateHeader("Expires", 0);
 
 						out.clear();
 						out.print(jsonResponse);
-					  System.out.print(jsonResponse);
+					  //System.out.print(jsonResponse);
 
             rs.close();
             pstmt.close();

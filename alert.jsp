@@ -42,7 +42,7 @@ response.setDateHeader("Expires", 0);
                 pstmt.close();
 
 								JSONObject json = new JSONObject();
-				  				json.put("exe_status", "submit success");
+				  				json.put("exe_status", "傳送成功");
 									out.print(json);
 
             }

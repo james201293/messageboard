@@ -28,3 +28,8 @@ $(document).ready(function(){
      });
 
 });
+
+<!--jquery button-->
+  $( "#allmessag,#submit,#clear" ).click( function( event ) {
+        event.preventDefault();
+      } );
